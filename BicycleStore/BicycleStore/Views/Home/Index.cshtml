@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BicycleStore.Models.Bicycle>
+
+    @if (ViewBag.Thanks != null)
+    {
+        <div class="display-3 text-success">@ViewBag.Thanks</div>
+    }
+    <h2>Bicycles</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Model</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bic in Model)
+            {
+                <tr>
+                    <td>@bic.Title</td>
+                    <td>@bic.Model</td>
+                    <td>@bic.Price</td>
+                    <td><a href="~/Home/Buy/@bic.BicycleId" class="btn btn-primary">Buy</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
