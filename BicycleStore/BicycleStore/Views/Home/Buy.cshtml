@@ -1,4 +1,4 @@
-﻿
+﻿@model BicycleStore.Models.Order
 
 <div>
     <h2>Order</h2>
@@ -8,16 +8,20 @@
                 <form method="post">
                     <input type="hidden" name="BicycleId" value="@ViewBag.BicycleId" />
                     <div class="form-group">
-                        <label>Name:</label>
-                        <input type="text" name="Name" class="ml-3 w-75"/>
+                        @Html.LabelFor(x => x.Name, null, new { @class = "form-label" })
+                        @Html.ValidationMessageFor(x => x.Name,null, new { style ="color:red;font-weight:bold; font-size:1.2em;" })
+                        @Html.TextBoxFor(x => x.Name, null, new { @class = "form-control" })
+
                     </div>
                     <div class="form-group">
-                        <label>Address:</label>
-                        <input type="text" name="Address" class="w-75"/>
+                        @Html.LabelFor(x => x.Address, null, new { @class = "form-label" })
+                        @Html.ValidationMessageFor(x => x.Address, null, new { style = "color:red;font-weight:bold; font-size:1.2em;" })
+                        @Html.TextBoxFor(x => x.Address, null, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <label>Phone:</label>
-                        <input type="text" name="Phone" class="w-75" style="margin-left:12px;"/>
+                        @Html.LabelFor(x => x.Phone, null, new { @class = "form-label" })
+                        @Html.ValidationMessageFor(x => x.Phone, null, new { style = "color:red;font-weight:bold; font-size:1.2em;" })
+                        @Html.TextBoxFor(x => x.Phone, null, new { @class = "form-control" })
                     </div>
                     <input class="btn btn-secondary w-50" type="submit" value="Buy"/>
                 </form>

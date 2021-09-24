@@ -1,0 +1,74 @@
+﻿@model BicycleStore.Models.Bicycle
+
+    <div class="h3">Create bicycle</div>
+    <form method="post" class="container">
+        @Html.TextBoxFor(x => x.BicycleId, null, new { type = "hidden" })
+        
+        <div class="row g-3 align-items-center m-3">
+
+            <div class="col-2 col-auto">
+                @Html.LabelFor(x => x.Title, null, new { @class = "col-form-label" })
+            </div>
+            <div class="col-auto">
+                @Html.TextBoxFor(x => x.Title, null, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(x => x.Title, null, new { style = "color:red;font-weight:bold; font-size:1.2em;" })
+        </div>
+        
+        <div class="row g-3 align-items-center m-3">
+
+            <div class="col-2 col-auto">
+                @Html.LabelFor(x => x.Model, null, new { @class = "col-form-label" })
+            </div>
+            <div class="col-auto">
+                @Html.TextBoxFor(x => x.Model, null, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(x => x.Model, null, new { style = "color:red;font-weight:bold; font-size:1.2em;" })
+        </div>
+        <div class="row g-3 align-items-center m-3">
+            <div class="col-2 col-auto">
+                @Html.LabelFor(x => x.WDiameter, "Wheel Diameter", new { @class = "col-form-label" })
+            </div>
+            <div class="col-auto">
+                @Html.TextBoxFor(x => x.WDiameter, null, new { @class = "form-control", type = "number" })
+            </div>
+            @Html.ValidationMessageFor(x => x.WDiameter, null, new { style = "color:red;font-weight:bold; font-size:1.2em;" })
+        </div>
+        <div class="row g-3 align-items-center m-3">
+            <div class="col-2 col-auto">
+                @Html.LabelFor(x => x.FrameMaterial, "Frame Material", new { @class = "col-form-label" })
+            </div>
+            <div class="col-auto">
+                @Html.TextBoxFor(x => x.FrameMaterial, null, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(x => x.FrameMaterial, null, new { style = "color:red;font-weight:bold; font-size:1.2em;" })
+        </div>
+        <div class="row g-3 align-items-center m-3">
+            <div class="col-2 col-auto">
+                @Html.LabelFor(x => x.BrakeType, "Brake Type", new { @class = "col-form-label" })
+            </div>
+            <div class="col-auto">
+                @Html.TextBoxFor(x => x.BrakeType, null, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(x => x.BrakeType, null, new { style = "color:red;font-weight:bold; font-size:1.2em;" })
+        </div>
+        <div class="row g-3 align-items-center m-3">
+            <div class="col-2 col-auto">
+                @Html.LabelFor(x => x.Color, null, new { @class = "col-form-label" })
+            </div>
+            <div class="col-auto">
+                @Html.TextBoxFor(x => x.Color, null, new { @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(x => x.Color, null, new { style = "color:red;font-weight:bold; font-size:1.2em;" })
+        </div>
+        <div class="row g-3 align-items-center m-3">
+            <div class="col-2 col-auto">
+                @Html.LabelFor(x => x.Price, null, new { @class = "col-form-label" })
+            </div>
+            <div class="col-auto">
+                @Html.TextBoxFor(x => x.Price, null, new { @class = "form-control", type = "number" })
+            </div>
+            @Html.ValidationMessageFor(x => x.Price, null, new { style = "color:red;font-weight:bold; font-size:1.2em;" })
+        </div>
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </form>

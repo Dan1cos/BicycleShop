@@ -52,3 +52,6 @@ D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\bin\Debug\netcoreapp3.1\runtime
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Home\Buy.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Create.cshtml.g.cs

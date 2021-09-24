@@ -16,11 +16,15 @@ namespace BicycleStore.Controllers
             this.context = context;
         }
 
-        public IActionResult Index(string thx = "")
+        public IActionResult Index(int? id, string thx = "")
         {
             if (thx != "" && Request.Headers.Count==16)
             {
                 ViewBag.Thanks = thx;
+            }
+            if (id != null)
+            {
+                ViewBag.Page = id;
             }
             var bicycles = context.Bicycles.ToList();
             return View(bicycles);
@@ -41,10 +45,19 @@ namespace BicycleStore.Controllers
         [HttpPost]
         public IActionResult Buy(Order order)
         {
-            context.Orders.Add(order);
-            context.SaveChanges();
-
-            return RedirectToAction("Index",new {thx = "Thank you for purchase!" });
+            if(ModelState.IsValid)
+            {
+                context.Orders.Add(order);
+                context.SaveChanges();
+                return RedirectToAction("Index", new { thx = "Thank you for purchase!" });
+            }
+            else
+            {
+                ViewBag.BicycleId = order.BicycleId;
+                ViewBag.Bicycle = context.Bicycles.Find(order.BicycleId);
+                return View(order);
+            }
+            
         }
     }
 }

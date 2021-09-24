@@ -14,15 +14,56 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var bic in Model)
+            @if (ViewBag.Page != null)
             {
-                <tr>
-                    <td>@bic.Title</td>
-                    <td>@bic.Model</td>
-                    <td>@bic.Price</td>
-                    <td><a href="~/Home/Buy/@bic.BicycleId" class="btn btn-primary">Buy</a></td>
-                </tr>
+                @if (Model.Count() - ViewBag.Page * 10 < 0)
+                {
+                    @for (int i = ViewBag.Page * 10 - 10; i < Model.ToList().Count; i++)
+                    {
+                        var arr = Model.ToArray();
+                        <tr>
+                            <td>@arr[i].Title</td>
+                            <td>@arr[i].Model</td>
+                            <td>@arr[i].Price</td>
+                            <td><a href="~/Home/Buy/@arr[i].BicycleId" class="btn btn-primary">Buy</a></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    @for (int i = ViewBag.Page * 10 - 10; i < 10 * ViewBag.Page; i++)
+                    {
+                        var arr = Model.ToArray();
+                        <tr>
+                            <td>@arr[i].Title</td>
+                            <td>@arr[i].Model</td>
+                            <td>@arr[i].Price</td>
+                            <td><a href="~/Home/Buy/@arr[i].BicycleId" class="btn btn-primary">Buy</a></td>
+                        </tr>
+                    }
+                }
             }
+            else
+            {
+                @for (int i = 0; i < 10; i++)
+                {
+                    var arr = Model.ToArray();
+                    <tr>
+                        <td>@arr[i].Title</td>
+                        <td>@arr[i].Model</td>
+                        <td>@arr[i].Price</td>
+                        <td><a href="~/Home/Buy/@arr[i].BicycleId" class="btn btn-primary">Buy</a></td>
+                    </tr>
+                }
+            }
+
         </tbody>
     </table>
+    <div class="d-inline-flex flex-row border">
+        @for (int i = 1; i <= Math.Ceiling(Convert.ToDecimal(Model.Count()/10)+1); i++)
+        {
+            <a href="~/Home/Index?id=@i" class="btn border-right">@i</a>
+
+        }
+    </div>
     
