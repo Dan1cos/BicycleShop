@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "X57z/h/WC0N5X915f6JfuLYzqFXExNNHZswk46+SuddtPi4DHpItttsfXlh3H/Za0jJ7tCjeMXFtUgjBrV2WWg==",
+  "dgSpecHash": "Rov/jKpsDAgdUyYsYXap5aN/8mDnlCxkxb7Bvcqt/nCl8es6E6IE8WkIHMVgmYPCuuets2nzCAFU+Mkb960mUQ==",
   "success": true,
   "projectFilePath": "D:\\STEP hw\\BicycleShop\\BicycleStore\\BicycleStore\\BicycleStore.csproj",
   "expectedPackageFiles": [
@@ -28,6 +28,7 @@
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

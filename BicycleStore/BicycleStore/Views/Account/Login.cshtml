@@ -1,0 +1,20 @@
+﻿@model BicycleStore.Models.ViewModels.LoginViewModel
+
+<h1>Log in</h1>
+<h4>Super admin:<br>Login: admin@gmail.com<br>Pass: Qwerty123</h4>
+
+<a asp-controller="Account" asp-action="Register" class="btn btn-primary mb-3">Register</a>
+<form asp-controller="Account" asp-action="Login" asp-antiforgery="true">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="row align-items-center m-2">
+        <div class="col-auto">@Html.LabelFor(x => x.Email, null, new { @class = "form-label" })</div>
+        <div class="col-auto">@Html.TextBoxFor(x => x.Email,null, new { @class = "form-control" })</div>
+        <div class="col-auto">@Html.ValidationMessageFor(x => x.Email)</div>
+    </div>
+    <div class="row align-items-center m-2">
+        <div class="col-auto">@Html.LabelFor(x => x.Password, null, new { @class = "form-label" })</div>
+        <div class="col-auto">@Html.PasswordFor(x => x.Password, new { @class = "form-control" })</div>
+        <div class="col-auto">@Html.ValidationMessageFor(x => x.Password)</div>
+    </div>
+    <input type="submit" value="Login" class="btn btn-primary" />
+</form>

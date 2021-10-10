@@ -11,21 +11,47 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller ="Home" asp-action ="Index">Bicycle Store</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Bicycle Store</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div class="navbar-collapse collapse d-sm-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller ="Home" asp-action ="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
                         </li>
+                        @if(User.IsInRole("admin") || User.IsInRole("superAdmin"))
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
+                        </li>
+                        }
+                        <li class="nav-item w-100">
+                            <div class="d-flex justify-content-end w-100">
+                                <a class="btn btn-secondary" asp-controller="Cart" asp-action="Index"><img src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/shopping-cart-48.png" style="max-height:60%; max-width:60%;" /></a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div>
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-primary ml-3">Log in</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="ml-3">
+                        Welcome, @User.Identity.Name
+                    </div>
+                    <div>
+                        <a asp-controller="Account" asp-action="Logout" class="btn btn-primary ml-3">Log out</a>
+                    </div>
+                }
             </div>
         </nav>
     </header>

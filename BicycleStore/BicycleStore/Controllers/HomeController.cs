@@ -18,7 +18,7 @@ namespace BicycleStore.Controllers
 
         public IActionResult Index(int? id, string thx = "")
         {
-            if (thx != "" && Request.Headers.Count==16)
+            if (thx != "" && Request.Headers.Count==17)
             {
                 ViewBag.Thanks = thx;
             }

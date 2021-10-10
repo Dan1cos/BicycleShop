@@ -1,0 +1,53 @@
+﻿@model BicycleStore.Models.ViewModels.BicycleIndexViewModel
+
+<h1>Cart</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Title</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+            {
+                <tr>
+                    <td>@line.Quantity</td>
+                    <td>@line.Bicycle.Title</td>
+                    <td>@line.Bicycle.Model</td>
+                    <td>@line.Bicycle.Price</td>
+                    <td>@(line.Bicycle.Price*line.Quantity)</td>
+                    <td>
+                        @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                        {
+                            <input type="hidden" value="@line.Bicycle.BicycleId" name="BicycleId" />
+                            <input type="hidden" value="Home/Index" name="returnUrl" />
+                            <input type="submit" class="btn btn-danger" value="Delete from cart" />
+                        }
+                    </td>
+                    @if (line.Quantity > 1)
+                    {
+                        <td>
+                            @using (Html.BeginForm("RemoveOneFromCart", "Cart"))
+                            {
+                                <input type="hidden" value="@line.Bicycle.BicycleId" name="BicycleId" />
+                                <input type="hidden" value="Home/Index" name="returnUrl" />
+                                <input type="submit" class="btn btn-warning" value="Delete one from cart" />
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total:</td>
+            <td>@Model.Cart.ComputeTotalValue()</td>
+        </tr>
+    </tfoot>
+</table>
+
+<a href="@Model.ReturnUrl" class="btn btn-secondary">Continue shopping</a>

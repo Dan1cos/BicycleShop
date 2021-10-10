@@ -25,6 +25,14 @@
                             <td>@arr[i].Title</td>
                             <td>@arr[i].Model</td>
                             <td>@arr[i].Price</td>
+                            <td>
+                                @using (Html.BeginForm("AddToCart", "Cart"))
+                                {
+                                    <input type ="hidden" value="@arr[i].BicycleId" name="BicycleId" />
+                                    <input type ="hidden" value="@Context.Request.Path" name="returnUrl" />
+                                    <input type ="submit" class="btn btn-primary" value="+ Add to cart" />
+                                }
+                            </td>
                             <td><a href="~/Home/Buy/@arr[i].BicycleId" class="btn btn-primary">Buy</a></td>
                         </tr>
                     }
@@ -38,6 +46,14 @@
                             <td>@arr[i].Title</td>
                             <td>@arr[i].Model</td>
                             <td>@arr[i].Price</td>
+                            <td>
+                                @using (Html.BeginForm("AddToCart", "Cart"))
+                                {
+                                    <input type ="hidden" value="@arr[i].BicycleId" name="BicycleId" />
+                                    <input type ="hidden" value="@Context.Request.Path" name="returnUrl" />
+                                    <input type ="submit" class="btn btn-primary" value="+ Add to cart" />
+                                }
+                            </td>
                             <td><a href="~/Home/Buy/@arr[i].BicycleId" class="btn btn-primary">Buy</a></td>
                         </tr>
                     }
@@ -52,6 +68,14 @@
                         <td>@arr[i].Title</td>
                         <td>@arr[i].Model</td>
                         <td>@arr[i].Price</td>
+                        <td>
+                            @using (Html.BeginForm("AddToCart", "Cart"))
+                            {
+                                <input type ="hidden" value="@arr[i].BicycleId" name="BicycleId" />
+                                <input type ="hidden" value="@Context.Request.Path" name="returnUrl" />
+                                <input type ="submit" class="btn btn-primary" value="+ Add to cart" />
+                            }
+                        </td>
                         <td><a href="~/Home/Buy/@arr[i].BicycleId" class="btn btn-primary">Buy</a></td>
                     </tr>
                 }

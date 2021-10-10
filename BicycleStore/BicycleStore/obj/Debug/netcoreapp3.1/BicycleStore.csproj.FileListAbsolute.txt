@@ -55,3 +55,8 @@ D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\V
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Create.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
