@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BicycleStore.Controllers
 {
-    [Authorize(Roles ="admin")]
+    [Authorize(Roles = "admin, superAdmin")]
     public class AdminController : Controller
     {
         BicycleContext context;

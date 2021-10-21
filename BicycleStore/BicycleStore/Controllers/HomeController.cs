@@ -1,4 +1,5 @@
 ﻿using BicycleStore.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,17 @@ namespace BicycleStore.Controllers
     public class HomeController : Controller
     {
         BicycleContext context;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public HomeController(BicycleContext context)
+        public HomeController(BicycleContext context, RoleManager<IdentityRole> roleManager)
         {
             this.context = context;
+            this.roleManager = roleManager;
         }
 
-        public IActionResult Index(int? id, string thx = "")
+        public async Task<IActionResult> Index(int? id, string thx = "")
         {
+            await CreateRoles();
             if (thx != "" && Request.Headers.Count==17)
             {
                 ViewBag.Thanks = thx;
@@ -59,5 +63,23 @@ namespace BicycleStore.Controllers
             }
             
         }
+
+        public async Task CreateRoles()
+        {
+            if (!roleManager.Roles.Where(x => x.Name == "user").Any())
+            {
+                var userRole = await roleManager.CreateAsync(new IdentityRole("user"));
+            }
+            if (!roleManager.Roles.Where(x => x.Name == "admin").Any())
+            {
+                var adminRole = await roleManager.CreateAsync(new IdentityRole("admin"));
+            }
+            if (!roleManager.Roles.Where(x => x.Name == "superAdmin").Any())
+            {
+                var superAdminRole = await roleManager.CreateAsync(new IdentityRole("superAdmin"));
+            }
+        }
+
+        
     }
 }

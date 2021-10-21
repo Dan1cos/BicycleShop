@@ -2,6 +2,7 @@
 using BicycleStore.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,34 +15,47 @@ namespace BicycleStore.Controllers
 {
     public class AccountController : Controller
     {
-        BicycleContext context;
+        private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public AccountController(BicycleContext context)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
-            this.context = context;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.roleManager = roleManager;
         }
 
-        public IActionResult Login()
+
+
+        public async Task<IActionResult> Login(string returnUrl = null)
         {
-            return View();
+            await CreateAdmin();
+            return View(new LoginViewModel { ReturnUrl = returnUrl});
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            if(ModelState.IsValid)
-            {
-                User user = await context.Users.Include(x => x.Role).FirstOrDefaultAsync(x => x.Email == model.Email && x.Password == model.Password);
-                if (user != null)
-                {
-                    await Authenticate(user);
+            
+            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
+            if (result.Succeeded)
+            {
+                if(!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                {
+                    return Redirect(model.ReturnUrl);
+                }
+                else
+                {
                     return RedirectToAction("Index", "Home");
                 }
-
-                ModelState.AddModelError("", "Invalid email and/or password");
             }
+            else
+            {
+                ModelState.AddModelError("", "Invalid email and/or password");
+            }   
             return View(model);
         }
 
@@ -50,51 +64,55 @@ namespace BicycleStore.Controllers
             return View();
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(LoginViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if(ModelState.IsValid)
             {
-                User user = await context.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
-                if(user == null)
-                {
-                    user = new User() { Email = model.Email, Password = model.Password };
-                    Role userRole = await context.Roles.FirstOrDefaultAsync(x => x.Name == "user");
-                    if(userRole!=null)
-                    {
-                        user.Role = userRole;
-                    }
-                    context.Users.Add(user);
-                    await context.SaveChangesAsync();
+                User user = new User { Email = model.Email, UserName = model.Email, Year = model.Year };
+                var result = await userManager.CreateAsync(user, model.Password);
 
-                    await Authenticate(user);
+                if(result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "user");
+                    await signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "User already exists");
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
                 }
             }
             return View(model);
         }
 
-        private async Task Authenticate(User user)
+        public async Task CreateAdmin()
         {
-            var claims = new List<Claim>
+            if (!userManager.Users.Where(x => x.UserName == "admin@gmail.com").Any())
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
-            };
-
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie",ClaimsIdentity.DefaultNameClaimType,ClaimsIdentity.DefaultRoleClaimType);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+                User user = new User { Email = "admin@gmail.com", UserName = "admin@gmail.com", Year = 1990 };
+                var result = await userManager.CreateAsync(user, "Qwerty123#");
+                if(result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "superAdmin");
+                }
+            }
         }
 
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+        
     }
 }

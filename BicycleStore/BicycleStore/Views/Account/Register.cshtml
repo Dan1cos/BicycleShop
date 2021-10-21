@@ -4,19 +4,24 @@
 
 <form asp-controller="Account" asp-action="Register" asp-antiforgery="true">
     <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        @Html.LabelFor(x => x.Email)
-        @Html.TextBoxFor(x => x.Email)
+    <div class="row align-items-center m-2">
+        @Html.LabelFor(x => x.Email, null, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Email, null, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Email)
     </div>
-    <div>
-        @Html.LabelFor(x => x.Password)
-        @Html.PasswordFor(x => x.Password)
+    <div class="row align-items-center m-2">
+        @Html.LabelFor(x => x.Year, null, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Year, null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Year)
+    </div>
+    <div class="row align-items-center m-2">
+        @Html.LabelFor(x => x.Password, null, new { @class = "form-label" })
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Password)
     </div>
-    <div>
-        @Html.LabelFor(x => x.ConfirmPassword)
-        @Html.PasswordFor(x => x.ConfirmPassword)
+    <div class="row align-items-center m-2">
+        @Html.LabelFor(x => x.ConfirmPassword, null, new { @class = "form-label" })
+        @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.ConfirmPassword)
     </div>
     <input type="submit" value="Register" class="btn btn-primary" />

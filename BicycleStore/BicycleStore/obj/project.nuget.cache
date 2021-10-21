@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Rov/jKpsDAgdUyYsYXap5aN/8mDnlCxkxb7Bvcqt/nCl8es6E6IE8WkIHMVgmYPCuuets2nzCAFU+Mkb960mUQ==",
+  "dgSpecHash": "3A934EgWN4IiXYZ46BxIMHE9hHJQM5+cCmDftwykm/DLXt9ojoX1awcB4jDll47QN7qPLIr/m6U/CRlJ2yQzzw==",
   "success": true,
   "projectFilePath": "D:\\STEP hw\\BicycleShop\\BicycleStore\\BicycleStore\\BicycleStore.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.0\\microsoft.aspnetcore.cryptography.internal.3.1.0.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.0\\microsoft.aspnetcore.cryptography.keyderivation.3.1.0.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.0\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -20,6 +23,8 @@
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.0\\microsoft.extensions.configuration.binder.3.1.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.0\\microsoft.extensions.dependencyinjection.3.1.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.0\\microsoft.extensions.dependencyinjection.abstractions.3.1.0.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.0\\microsoft.extensions.identity.core.3.1.0.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.0\\microsoft.extensions.identity.stores.3.1.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.logging\\3.1.0\\microsoft.extensions.logging.3.1.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.0\\microsoft.extensions.logging.abstractions.3.1.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.options\\3.1.0\\microsoft.extensions.options.3.1.0.nupkg.sha512",

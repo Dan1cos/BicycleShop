@@ -1,5 +1,6 @@
 using BicycleStore.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,7 +17,6 @@ namespace BicycleStore
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
             using (var scope = host.Services.CreateScope())
             {
                 var service = scope.ServiceProvider;
@@ -24,8 +24,6 @@ namespace BicycleStore
                 var context = service.GetRequiredService<BicycleContext>();
                 TestData.Init(context);
             }
-
-
             host.Run();
         }
 

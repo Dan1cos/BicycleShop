@@ -60,3 +60,5 @@ D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\V
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Account\AccessDenied.cshtml.g.cs

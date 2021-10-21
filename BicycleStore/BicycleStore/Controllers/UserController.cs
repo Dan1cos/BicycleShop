@@ -1,5 +1,7 @@
 ﻿using BicycleStore.Models;
+using BicycleStore.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,34 +10,54 @@ using System.Threading.Tasks;
 
 namespace BicycleStore.Controllers
 {
-    [Authorize(Roles = "admin, superAdmin")]
+    [Authorize(Roles ="superAdmin")]
     public class UserController : Controller
     {
         BicycleContext context;
+        private readonly UserManager<User> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public UserController(BicycleContext context)
+        public UserController(BicycleContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             this.context = context;
+            this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(context.Users.ToList());
+            return View(await CreateViewModel());
+        }
+
+        private async Task<List<UserInfoViewModel>> CreateViewModel()
+        {
+            List<UserInfoViewModel> list = new List<UserInfoViewModel>();
+
+            foreach (var user in userManager.Users.ToList())
+            {
+                UserInfoViewModel usrVM = new UserInfoViewModel();
+                usrVM.User = user;
+                usrVM.IsAdmin = await userManager.IsInRoleAsync(user,"admin");
+                if(!await userManager.IsInRoleAsync(user, "superAdmin"))
+                {
+                    list.Add(usrVM);
+                }
+            }
+            return list;
         }
 
         [HttpPost]
-        public IActionResult Index(User user)
+        public async Task<IActionResult> Index(User user)
         {
-            if (user.RoleId == 1) 
+            if (await userManager.IsInRoleAsync(user, "admin"))
             {
-                context.Users.Find(user.UserId).RoleId = 2;
+                await userManager.RemoveFromRoleAsync(userManager.Users.Where(x => x.Id == user.Id).FirstOrDefault(), "admin");
             }
             else
             {
-                context.Users.Find(user.UserId).RoleId = 1;
+                await userManager.AddToRoleAsync(userManager.Users.Where(x => x.Id == user.Id).FirstOrDefault(), "admin");
             }
-            context.SaveChanges();
-            return View(context.Users.ToList());
+            return View(await CreateViewModel());
         }
     }
 }

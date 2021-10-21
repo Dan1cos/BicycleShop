@@ -1,48 +1,40 @@
-﻿@model System.Collections.Generic.List<BicycleStore.Models.User> 
+﻿@model System.Collections.Generic.List<BicycleStore.Models.ViewModels.UserInfoViewModel>
+
 
 <table class="table">
     <thead>
         <tr>
             <th>Email</th>
-            @if (User.IsInRole("superAdmin"))
-            {
-                <th>Password</th>
-                <th>Is Admin</th>
-                <th>Make admin</th>
-            }
-        </tr>        
+            <th>Name</th>
+            <th>Is Admin</th>
+            <th>Make admin</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var it in Model)
         {
-            @if (it.RoleId != 3)
-            {
-                <tr>
-                    <td>@it.Email</td>
-                    @if (User.IsInRole("superAdmin"))
+
+            <tr>
+                <td>@it.User.Email</td>
+                <td>@it.User.UserName</td>
+                <td><input type="checkbox" checked=@(it.IsAdmin) disabled /></td>
+                <td>
+                    @using (Html.BeginForm("Index", "User"))
                     {
-                        <td>@it.Password</td>
-                        <td><input type="checkbox" checked =@(it.RoleId==1) disabled/></td>
-                        <td>
-                            @using (Html.BeginForm("Index", "User"))
-                            {
-                                <input type ="hidden" value="@it.UserId" name="UserId" />
-                                <input type ="hidden" value="@it.Email" name="Email" />
-                                <input type ="hidden" value="@it.RoleId" name="RoleId" />
-                                @if (it.RoleId == 2)
-                                {
-                                    <input type ="submit" class="btn btn-primary" value="Make admin" />
-                                }
-                                else
-                                {
-                                    <input type="submit" class="btn btn-primary" value="Delete admin" />
-                                }
-                            }
-                        </td>
-                        
+                        <input type="hidden" value="@it.User.Id" name="Id" />
+                        <input type="hidden" value="@it.User.Email" name="Email" />
+                        <input type="hidden" value="@it.User.UserName" name="UserName" />
+                        @if (!it.IsAdmin)
+                        {
+                            <input type="submit" class="btn btn-primary" value="Make admin" />
+                        }
+                        else
+                        {
+                            <input type="submit" class="btn btn-primary" value="Delete admin" />
+                        }
                     }
-                </tr>
-            }
+                </td>
+            </tr>
 
         }
 
