@@ -1,0 +1,15 @@
+﻿@model BicycleStore.Models.ViewModels.ChangeRoleViewModel
+
+<h1>Change roles for @Model.UserEmail</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="userId" value="@Model.UserId"/>
+    <div class="form-group">
+        @foreach (var role in Model.AllRoles)
+        {
+            <input type="checkbox" name="roles" id="@role.Name" value="@role.Name" @(Model.UserRoles.Contains(role.Name)?"checked='checked'":"") @(role.Name=="superAdmin" && Model.UserRoles.Contains(role.Name) && Model.UserEmail=="admin@gmail.com"?"disabled":"")/>
+            <label @(Model.UserRoles.Contains(role.Name)?"style=color:blue;":"") for="@role.Name">@role.Name</label><br>
+        }
+    </div>
+    <input type="submit" class="btn btn-primary" value="Save"/>
+</form>

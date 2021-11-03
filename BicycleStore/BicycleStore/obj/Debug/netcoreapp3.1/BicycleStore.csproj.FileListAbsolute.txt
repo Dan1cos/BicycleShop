@@ -62,3 +62,10 @@ D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\V
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Account\AccessDenied.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Index.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Create.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Roles\UserList.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Edit.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\User\Edit.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\User\ChangePassword.cshtml.g.cs
+D:\STEP hw\BicycleShop\BicycleStore\BicycleStore\obj\Debug\netcoreapp3.1\Razor\Views\Home\BicycleList.cshtml.g.cs

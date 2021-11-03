@@ -1,93 +1,43 @@
-﻿@model IEnumerable<BicycleStore.Models.Bicycle>
+﻿@model BicycleStore.Models.ViewModels.BicycleListViewModel
 
     @if (ViewBag.Thanks != null)
     {
         <div class="display-3 text-success">@ViewBag.Thanks</div>
     }
     <h2>Bicycles</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <td>Title</td>
-                <td>Model</td>
-                <td>Price</td>
-            </tr>
-        </thead>
-        <tbody>
-            @if (ViewBag.Page != null)
+    <form>
+        <input type="hidden" id="availiablePages" value="@ViewBag.AvailiablePages" />
+    </form>
+    <div class="row align-items-center m-3">
+        <div class="col-8">
+            <input type="text" id="searchText" class="form-control" placeholder="Enter the name of the model,`Search` button will work with selected filters" />
+        </div>
+        <div class="col-auto">
+            <button id="search" class="btn btn-primary">Search</button>
+        </div>
+        
+    </div>
+    
+    <div id="bicycle-list">
+
+    </div>
+
+    <div class="d-inline-flex flex-row border">
+        @for (int i = 1; i < ViewBag.AvailiablePages + 3; i++)
+        {
+
+            if (i == 1)
             {
-                @if (Model.Count() - ViewBag.Page * 10 < 0)
-                {
-                    @for (int i = ViewBag.Page * 10 - 10; i < Model.ToList().Count; i++)
-                    {
-                        var arr = Model.ToArray();
-                        <tr>
-                            <td>@arr[i].Title</td>
-                            <td>@arr[i].Model</td>
-                            <td>@arr[i].Price</td>
-                            <td>
-                                @using (Html.BeginForm("AddToCart", "Cart"))
-                                {
-                                    <input type ="hidden" value="@arr[i].BicycleId" name="BicycleId" />
-                                    <input type ="hidden" value="@Context.Request.Path" name="returnUrl" />
-                                    <input type ="submit" class="btn btn-primary" value="+ Add to cart" />
-                                }
-                            </td>
-                            <td><a href="~/Home/Buy/@arr[i].BicycleId" class="btn btn-primary">Buy</a></td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    @for (int i = ViewBag.Page * 10 - 10; i < 10 * ViewBag.Page; i++)
-                    {
-                        var arr = Model.ToArray();
-                        <tr>
-                            <td>@arr[i].Title</td>
-                            <td>@arr[i].Model</td>
-                            <td>@arr[i].Price</td>
-                            <td>
-                                @using (Html.BeginForm("AddToCart", "Cart"))
-                                {
-                                    <input type ="hidden" value="@arr[i].BicycleId" name="BicycleId" />
-                                    <input type ="hidden" value="@Context.Request.Path" name="returnUrl" />
-                                    <input type ="submit" class="btn btn-primary" value="+ Add to cart" />
-                                }
-                            </td>
-                            <td><a href="~/Home/Buy/@arr[i].BicycleId" class="btn btn-primary">Buy</a></td>
-                        </tr>
-                    }
-                }
+                <button class="btn border-right pageSelector" value="dec">&#60;</button>
+            }
+            else if(i == ViewBag.AvailiablePages+2)
+            {
+                <button class="btn border-right pageSelector" value="inc">&#62;</button>
             }
             else
             {
-                @for (int i = 0; i < 10; i++)
-                {
-                    var arr = Model.ToArray();
-                    <tr>
-                        <td>@arr[i].Title</td>
-                        <td>@arr[i].Model</td>
-                        <td>@arr[i].Price</td>
-                        <td>
-                            @using (Html.BeginForm("AddToCart", "Cart"))
-                            {
-                                <input type ="hidden" value="@arr[i].BicycleId" name="BicycleId" />
-                                <input type ="hidden" value="@Context.Request.Path" name="returnUrl" />
-                                <input type ="submit" class="btn btn-primary" value="+ Add to cart" />
-                            }
-                        </td>
-                        <td><a href="~/Home/Buy/@arr[i].BicycleId" class="btn btn-primary">Buy</a></td>
-                    </tr>
-                }
+                <button class="btn border-right pageSelector" value="@(i-1)">@(i-1)</button>
             }
-
-        </tbody>
-    </table>
-    <div class="d-inline-flex flex-row border">
-        @for (int i = 1; i <= Math.Ceiling(Convert.ToDecimal(Model.Count()/10)+1); i++)
-        {
-            <a href="~/Home/Index?id=@i" class="btn border-right">@i</a>
 
         }
     </div>
-    

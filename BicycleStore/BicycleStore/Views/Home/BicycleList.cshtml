@@ -1,0 +1,43 @@
+﻿
+
+<table class="table">
+    
+    
+    <thead>
+        <tr>
+            <td><a asp-action="Index" asp-route-sortType="TitleAsc">Title</a></td>
+            <td><a asp-action="Index" asp-route-sortType="ModelAsc">Model</a></td>
+            <td><a asp-action="Index" asp-route-sortType="PriceAsc">Price</a></td>
+            <td>
+                <div>
+                    <select name="company" asp-items="Model.Companies" id="companySelect"></select>
+                    <select name="wheelDiameter" asp-items="Model.WheelDiameter" id="wheelDiameterSelect"></select>
+                    <select name="frameMaterial" asp-items="Model.FrameMaterial" id="frameMaterialSelect"></select>
+                    <select name="brakeType" asp-items="Model.BrakeType" id="brakeTypeSelect"></select>
+                    <select name="color" asp-items="Model.Color" id="colorSelect"></select>
+                </div>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var bicycle in Model.Bicycles)
+            {
+                <tr>
+                    <td>@bicycle.Title</td>
+                    <td>@bicycle.Model</td>
+                    <td>@bicycle.Price</td>
+                    <td>
+                        @using (Html.BeginForm("AddToCart", "Cart"))
+                        {
+                            <input type="hidden" value="@bicycle.BicycleId" name="BicycleId" />
+                            <input type="hidden" value="Home/Index" name="returnUrl" />
+                            <input type="submit" class="btn btn-primary" value="+ Add to cart" />
+                        }
+                    </td>
+                    <td><a href="~/Home/Buy/@bicycle.BicycleId" class="btn btn-primary">Buy</a></td>
+                </tr>
+            }
+            
+    </tbody>
+</table>
+

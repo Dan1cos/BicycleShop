@@ -6,8 +6,7 @@
         <tr>
             <th>Email</th>
             <th>Name</th>
-            <th>Is Admin</th>
-            <th>Make admin</th>
+            <th>Edit user</th>
         </tr>
     </thead>
     <tbody>
@@ -17,21 +16,13 @@
             <tr>
                 <td>@it.User.Email</td>
                 <td>@it.User.UserName</td>
-                <td><input type="checkbox" checked=@(it.IsAdmin) disabled /></td>
+                <td><a asp-action="Edit" asp-route-userId="@it.User.Id" class="btn btn-primary">Edit</a></td>
                 <td>
                     @using (Html.BeginForm("Index", "User"))
                     {
                         <input type="hidden" value="@it.User.Id" name="Id" />
                         <input type="hidden" value="@it.User.Email" name="Email" />
                         <input type="hidden" value="@it.User.UserName" name="UserName" />
-                        @if (!it.IsAdmin)
-                        {
-                            <input type="submit" class="btn btn-primary" value="Make admin" />
-                        }
-                        else
-                        {
-                            <input type="submit" class="btn btn-primary" value="Delete admin" />
-                        }
                     }
                 </td>
             </tr>
